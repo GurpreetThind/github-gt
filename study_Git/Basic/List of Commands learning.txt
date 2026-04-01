@@ -1,0 +1,822 @@
+git status 
+#### fatal: not a git repository (or any of the parent directories): .git
+####
+### To fix this we need to initialize git on the folder 
+ git init 
+ pwd
+
+ ##at G_Basic study_Git/G_Basic
+
+ git config --global init.defaultBranch 
+
+ ## Default branch is Study 
+ ## Other Branch is Project 
+
+
+ git add Read.md
+
+#######
+
+bash-3.2$ git status 
+On branch study
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+        new file:   Read.md
+
+
+######
+Git Commit command
+######
+
+git commit -m "Learn init status add commit config-branch"
+[study (root-commit) b9c7860] Learn init status add commit config-branch
+ 1 file changed, 1 insertion(+)
+ create mode 100644 Read.md
+
+
+
+######
+Git Configuration local to mac
+######
+git config --list --show-origin
+file:/usr/local/etc/gitconfig   credential.helper=osxkeychain
+file:/Users/gurpreetthind/.gitconfig    user.name=GurpreetThind
+file:/Users/gurpreetthind/.gitconfig    user.email=thind.cse@gmail.com
+file:/Users/gurpreetthind/.gitconfig    init.defaultbranch=study
+file:.git/config        core.repositoryformatversion=0
+file:.git/config        core.filemode=true
+file:.git/config        core.bare=false
+file:.git/config        core.logallrefupdates=true
+file:.git/config        core.ignorecase=true
+file:.git/config        core.precomposeunicode=true
+
+
+#####
+
+Logs 
+
+######
+
+git log
+commit b9c7860aaed9c6ad0dd386012c342af9803196b3 (HEAD -> study)
+Author: GurpreetThind <thind.cse@gmail.com>
+Date:   Sun Mar 29 22:18:38 2026 -0400
+
+    Learn init status add commit config-branch
+gurpreetthind@MacBookPro study_Git % git log
+commit 25851cbb4165828af13c73f4849cfab1d3ff4478 (HEAD -> study)
+Author: GurpreetThind <thind.cse@gmail.com>
+Date:   Sun Mar 29 22:31:36 2026 -0400
+
+    Adding List of Commands learning
+
+commit b9c7860aaed9c6ad0dd386012c342af9803196b3
+Author: GurpreetThind <thind.cse@gmail.com>
+Date:   Sun Mar 29 22:18:38 2026 -0400
+
+    Learn init status add commit config-branch
+
+#####
+
+Checkout 
+Switch between different branches
+Switch between different commits (Snapshots) 
+
+######
+
+
+bash-3.2$ git branch 
+* (HEAD detached from 25851cb)
+  study
+bash-3.2$ git checkout study 
+
+##
+As soon as checkout a commit a new branch is created
+git branch will show you the current branch or a commit 
+
+##
+
+bash-3.2$ git branch 
+* (HEAD detached at c232a9b)
+  study
+
+## Branch can have miultiple commits 
+
+## A new branch is created when working on a repo 
+## Then work on the new branch 
+## Make all commits
+## Review progress and then merge the commits 
+## Merge the new branch to the Already existing branch
+
+Eg: Dev --> Staging --> Prod 
+
+##
+Branch
+##
+
+bash-3.2$ git branch creating-new-branch
+bash-3.2$ git branch 
+  creating-new-branch
+* study
+
+## Then use checkout to move to that branch
+
+bash-3.2$ git checkout creating-new-branch
+Switched to branch 'creating-new-branch'
+
+#### 
+You can do this in one commnd via 
+
+git checkout -b creating-new-branch 
+
+####
+
+
+----------------------------------------------------------------------
+
+###
+
+HEAD 
+
+commit fb4765da48dbd52a3e43c1cbb802db0e3fb5599b (HEAD -> creating-new-branch)
+###
+
+In Git, HEAD is a pointer that tells Git which commit you are currently working on. 
+Think of it as a "You Are Here" marker on a map of your project's history.
+Most of the time, HEAD doesn't point directly to a commit; instead, it points to a branch reference. 
+When you switch branches, HEAD moves to point at the new branch
+
+bash-3.2$ git log -n 1
+commit fb4765da48dbd52a3e43c1cbb802db0e3fb5599b (HEAD -> creating-new-branch)
+Author: GurpreetThind <thind.cse@gmail.com>
+Date:   Sun Mar 29 22:53:09 2026 -0400
+
+On a Branch ---> New commits are saved to that branch automatically.
+
+Detached HEAD ---> You can look at old code, but new commits won't belong to any branch and might be lost.
+
+
+git symbolic-ref HEAD (This usually returns something like refs/heads/main)
+
+git rev-parse HEAD
+
+
+
+ git rev-parse HEAD
+fb4765da48dbd52a3e43c1cbb802db0e3fb5599b
+
+
+ git symbolic-ref HEAD
+refs/heads/creating-new-branch
+
+
+###
+Merge Branch 
+###
+
+Go the branch which is behind or you want that to be merged-into 
+In our case Study branch needs to be added from creating-new-branch 
+Save everything on creating-new-branch
+Add and commit on creating-new-branch
+checkout to study branch
+Run merge from creating-new-branch to study branch
+
+
+bash-3.2$ git branch
+* creating-new-branch
+  study
+
+
+bash-3.2$ git status
+On branch creating-new-branch
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   List of Commands learning.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bash-3.2$ git add *
+bash-3.2$ git commit -m "Merge / HEAD"
+[creating-new-branch aa14b7c] Merge / HEAD
+ 1 file changed, 49 insertions(+)
+
+
+
+
+bash-3.2$ git checkout study 
+Switched to branch 'study'
+bash-3.2$ git merge creating-new-branch
+Updating a8a69b0..aa14b7c
+Fast-forward
+ Adding-new-branch             |  7 +++++
+ List of Commands learning.txt | 72 ++++++++++++++++++++++++++++++++++++++++++++
+ 2 files changed, 79 insertions(+)
+ create mode 100644 Adding-new-branch
+
+#####
+SWITCH
+#####
+
+bash-3.2$ git branch learn_switch
+bash-3.2$ git checkout learn_switch
+M       Read.md
+Switched to branch 'learn_switch'
+bash-3.2$ vi Add_switch-to-knowledge 
+bash-3.2$ git add .
+bash-3.2$ git commit -m "Switch vs Checkout"
+[learn_switch 70f19d9] Switch vs Checkout
+ 2 files changed, 33 insertions(+)
+ create mode 100644 Add_switch-to-knowledge
+bash-3.2$ git branch 
+  creating-new-branch
+* learn_switch
+  study
+bash-3.2$ git switch -
+Switched to branch 'study'
+bash-3.2$ git merge learn_switch
+Updating efac5fe..70f19d9
+Fast-forward
+ Add_switch-to-knowledge | 32 ++++++++++++++++++++++++++++++++
+ Read.md                 |  1 +
+ 2 files changed, 33 insertions(+)
+ create mode 100644 Add_switch-to-knowledge
+
+
+
+------------------------------------------------------------------
+
+#######
+
+Git list files
+
+Git remove a file 
+
+######
+
+ash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+bash-3.2$ ll
+bash: ll: command not found
+bash-3.2$ ls
+Add_switch-to-knowledge         Read.md
+Adding-new-branch               test_to_delete.txt
+List of Commands learning.txt
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+bash-3.2$ ls
+Add_switch-to-knowledge         Read.md
+Adding-new-branch               test_to_delete.txt
+List of Commands learning.txt
+bash-3.2$ git add test_to_delete.txt 
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+test_to_delete.txt
+bash-3.2$ git commit -m "Added a file that will be deleted
+> "
+[study e1e98f3] Added a file that will be deleted
+ 1 file changed, 2 insertions(+)
+ create mode 100644 test_to_delete.txt
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+test_to_delete.txt
+bash-3.2$ git rm test_to_delete.txt 
+rm 'test_to_delete.txt'
+bash-3.2$ git status
+On branch study
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        deleted:    test_to_delete.txt
+
+bash-3.2$ git commit  -m "RM - to delete File"
+[study ad15e59] RM - to delete File
+ 1 file changed, 2 deletions(-)
+ delete mode 100644 test_to_delete.txt
+bash-3.2$ git status
+On branch study
+nothing to commit, working tree clean
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+bash-3.2$ ls
+Add_switch-to-knowledge         List of Commands learning.txt
+Adding-new-branch               Read.md
+
+
+
+###
+
+Remove all the unstaged changes
+
+git checkout . 
+
+it is the way to revert all unstaged (before ADD) on all the files 
+
+But if ou want to make changes to only one file, then use RESTORE on the file 
+
+###
+
+
+bash-3.2$ git checkout -b remove_unstage_changes
+Switched to a new branch 'remove_unstage_changes'
+bash-3.2$ vi a_1.txt
+bash-3.2$ ls
+Add_switch-to-knowledge         List of Commands learning.txt
+Adding-new-branch               Read.md
+bash-3.2$ vi Adding-new-branch 
+bash-3.2$ git status
+On branch remove_unstage_changes
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Adding-new-branch
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git checkout .
+Updated 1 path from the index
+bash-3.2$ git status
+On branch remove_unstage_changes
+nothing to commit, working tree clean
+bash-3.2$ vi Adding-new-branch 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ vi Adding-new-branch 
+bash-3.2$ ls
+Add_switch-to-knowledge         List of Commands learning.txt
+Adding-new-branch               Read.md
+bash-3.2$ vi Read.md 
+bash-3.2$ git status
+On branch remove_unstage_changes
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Read.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git restore Read.md 
+bash-3.2$ git status
+On branch remove_unstage_changes
+nothing to commit, working tree clean
+bash-3.2$ vi Read.md 
+bash-3.2$ git status
+On branch remove_unstage_changes
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Read.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ vi Adding-new-branch 
+bash-3.2$ git status
+On branch remove_unstage_changes
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Adding-new-branch
+        modified:   Read.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git restore Read.md 
+bash-3.2$ git status
+On branch remove_unstage_changes
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Adding-new-branch
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git add Adding-new-branch 
+bash-3.2$ git commit -m "Restore via Restore and checkout" 
+[remove_unstage_changes d9e1ce7] Restore via Restore and checkout
+ 1 file changed, 4 insertions(+)
+
+
+ ---------------------------
+
+
+#####
+
+git clean -dn
+git clean -df
+
+Remove all new created directories or files
+
+######
+
+Created directory test1 and file test2
+
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+bash-3.2$ ls
+Add_switch-to-knowledge         Read.md
+Adding-new-branch               test1
+List of Commands learning.txt   test2
+
+
+
+bash-3.2$ git status 
+On branch study
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        test2
+
+nothing added to commit but untracked files present (use "git add" to track)
+bash-3.2$ git clean -dn
+Would remove test1/
+Would remove test2
+bash-3.2$ git clean -df
+Removing test1/
+Removing test2
+bash-3.2$ git status 
+On branch study
+nothing to commit, working tree clean
+bash-3.2$ ls
+Add_switch-to-knowledge         List of Commands learning.txt
+Adding-new-branch               Read.md
+
+-------------------------------------------------------
+
+
+#######
+
+Removing staged changes (ADD ONLY / NP commit )
+
+######
+(Restore + Checkout)
+
+bash-3.2$ git checkout -b remove_staged_change_add_only
+Switched to a new branch 'remove_staged_change_add_only'
+bash-3.2$ cat Read.md 
+Initializing Study Branch
+Date - Sun Mar 29 2026
+
+
+bash-3.2$ vi Read.md 
+bash-3.2$ git add Read.md 
+bash-3.2$ git status 
+On branch remove_staged_change_add_only
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   Read.md
+
+bash-3.2$ git reset Read.md 
+Unstaged changes after reset:
+M       Read.md
+bash-3.2$ git checkout Read.md 
+Updated 1 path from the index
+bash-3.2$ git status 
+On branch remove_staged_change_add_only
+nothing to commit, working tree clean
+bash-3.2$ git branch 
+  creating-new-branch
+  learn_switch
+  remove_staged_change
+* remove_staged_change_add_only
+  remove_unstage_changes
+  study
+
+
+bash-3.2$ cat Read.md 
+Initializing Study Branch
+
+
+RESTORE + CHECKOUT 
+
+ 
+ bash-3.2$ git branch 
+  creating-new-branch
+  learn_switch
+  remove_staged_change
+* remove_staged_change_add_only
+  remove_unstage_changes
+  study
+bash-3.2$ vi Read.md 
+bash-3.2$ cat Read.md 
+Initializing Study Branch
+Date - Sun Mar 29 2026
+
+
+RANDOMMMMMMMM
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ git status
+On branch remove_staged_change_add_only
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Read.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git add Read.md 
+bash-3.2$ git status
+On branch remove_staged_change_add_only
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   Read.md
+
+bash-3.2$ git restore --staged Read.md 
+bash-3.2$ git status
+On branch remove_staged_change_add_only
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Read.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git checkout Read.md 
+Updated 1 path from the index
+bash-3.2$ git status
+On branch remove_staged_change_add_only
+nothing to commit, working tree clean
+
+
+RESET helps to change the HEAD of the commit 
+-------------------------------------------------------------
+
+############
+
+RESET Commits (hard and soft)
+
+############
+
+bash-3.2$ git branch 
+  creating-new-branch
+  learn_switch
+  remove_staged_change
+  remove_staged_change_add_only
+  remove_unstage_changes
+* study
+bash-3.2$ git switch -c unwanted_commit
+Switched to a new branch 'unwanted_commit'
+
+bash-3.2$ git branch 
+  creating-new-branch
+  learn_switch
+  remove_staged_change
+  remove_staged_change_add_only
+  remove_unstage_changes
+  study
+* unwanted_commit
+bash-3.2$ vi unrequired.txt
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+bash-3.2$ git add unrequired.txt 
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+unrequired.txt
+
+
+bash-3.2$ git status 
+On branch unwanted_commit
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        new file:   unrequired.txt
+
+bash-3.2$ git commit -m "Added unrequired file"
+[unwanted_commit c1c307c] Added unrequired file
+ 1 file changed, 1 insertion(+)
+ create mode 100644 unrequired.txt
+
+bash-3.2$ git status 
+On branch unwanted_commit
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bash-3.2$ First remove the commit but staged files are there.
+
+bash-3.2$ git reset --soft HEAD~1
+
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+unrequired.txt
+
+
+
+bash-3.2$ remove unrequired.txt from staged area and working directory 
+bash-3.2$ git commit -m "added again "
+[unwanted_commit 185cdd4] added again
+ 1 file changed, 1 insertion(+)
+ create mode 100644 unrequired.txt
+
+
+bash-3.2$ git reset HEAD~1
+Unstaged changes after reset:
+M       List of Commands learning.txt
+
+
+bash-3.2$ Hard reset then 
+
+bash-3.2$ git ls-files
+Add_switch-to-knowledge
+Adding-new-branch
+List of Commands learning.txt
+Read.md
+bash-3.2$ git reset --hard HEAD~1
+HEAD is now at 27ecc1a Add Clean with options
+
+-----------------------------------------------------------
+
+###########
+
+DELETING Branches
+
+
+##########
+
+git branch -d <name_of_merged_branch(s)>
+git branch -D <name_of_branch(s)> ### Force delete branch 
+
+
+Can delete multiple branches at once 
+
+bash-3.2$ git branch 
+  creating-new-branch
+  learn_switch
+  remove_staged_change
+  remove_staged_change_add_only
+  remove_unstage_changes
+* study
+  unwanted_commit
+bash-3.2$ git branch -d learn_switch
+Deleted branch learn_switch (was 70f19d9).
+bash-3.2$ git branch -d unwanted_commit
+Deleted branch unwanted_commit (was 27ecc1a).
+bash-3.2$ git branch 
+  creating-new-branch
+  remove_staged_change
+  remove_staged_change_add_only
+  remove_unstage_changes
+* study
+bash-3.2$ git branch -D creating-new-branch remove_staged_change remove_staged_change_add_only remove_unstage_changes 
+Deleted branch creating-new-branch (was aa14b7c).
+Deleted branch remove_staged_change (was d309d41).
+Deleted branch remove_staged_change_add_only (was 27ecc1a).
+Deleted branch remove_unstage_changes (was d9e1ce7).
+
+
+
+=====================================================
+
+############
+
+DETACH HEAD
+
+############
+
+
+if you directly checkout a commit, it will lead to detach HEAD
+
+
+bash-3.2$ git add detach-head.txt 
+bash-3.2$ git commit -m "Step-2 Added Detach file to create a new commit"
+[study 2fdfc02] Step-2 Added Detach file to create a new commit
+ 1 file changed, 3 insertions(+)
+ create mode 100644 detach-head.txt
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ clear
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ git branch 
+* study
+bash-3.2$ git checkout 50a3fc27ff46a70c6bcd976e11410d0b39ba7df0
+Note: switching to '50a3fc27ff46a70c6bcd976e11410d0b39ba7df0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 50a3fc2 Step-1 Detach head
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ git status
+HEAD detached at 50a3fc2
+nothing to commit, working tree clean
+bash-3.2$ git status
+HEAD detached at 50a3fc2
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        detach-head.txt
+
+nothing added to commit but untracked files present (use "git add" to track)
+bash-3.2$ git status
+HEAD detached at 50a3fc2
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   Add_switch-to-knowledge
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        detach-head.txt
+
+no changes added to commit (use "git add" and/or "git commit -a")
+bash-3.2$ git add Add_switch-to-knowledge 
+bash-3.2$ git status
+HEAD detached at 50a3fc2
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   Add_switch-to-knowledge
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        detach-head.txt
+
+bash-3.2$ git add detach-head.txt 
+bash-3.2$ git branch
+* (HEAD detached at 50a3fc2)
+  study
+bash-3.2$ git switch study
+M       Add_switch-to-knowledge
+Previous HEAD position was 50a3fc2 Step-1 Detach head
+Switched to branch 'study'
+bash-3.2$ git merge 50a3fc2
+Already up to date.
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ git branch 
+* study
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ 
+bash-3.2$ git status
+On branch study
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   Add_switch-to-knowledge
+
+bash-3.2$ git commit -m "Merged from head"
+[study cf998d7] Merged from head
+ 1 file changed, 1 insertion(+)
+
+
+--------------------------------------------------
+ ############
+
+ Understand .gitignore
+
+
+ ##############
+
+ There are files that are required for your project but do not need Version Management via Git 
+
+ Those files and folders can be ignored via .gitignore
+
+ if you want to ignore all files but dont want to ignore a certain file then write 
+
+ *.log
+ !test.log
+
+ test.log will not be ignored although it ends with .log
+
+ignore a subfolder and its content with 
+
+folder_name/*
+
