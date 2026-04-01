@@ -1,0 +1,28 @@
+A Recursive Merge (often called a 3-way merge) is what happens when Git can’t do a simple "Fast-Forward." This occurs when the branch you are merging into (e.g., main) has moved forward with its own new commits while you were working on your feature branch.
+
+Unlike a Fast-Forward, which just slides a pointer, a Recursive merge actually creates a new "Merge Commit" that ties the two histories together.
+
+
+How it Works: The 3-Way Strategy
+To combine the work, Git looks at three specific points in your history:
+
+The Common Ancestor: The last point where both branches were the same.
+
+Branch A (main): The current state of the main branch.
+
+Branch B (feature): The current state of your work.
+
+Git "recursively" builds a tree of these changes to figure out how to put them together. If you edited line 10 of deploy.sh and your teammate edited line 50 on main, Git is smart enough to combine both without asking you for help.
+
+
+It’s a bit of technical magic. 
+In complex cases where there might be more than one common ancestor (common in advanced branching), Git identifies them and merges the ancestors first to create a "virtual" common ancestor, then merges that with your branches. It repeats this process—hence, recursive.
+
+
+History	Non-linear ----> you see "branches" and "joins" in the log.
+
+Merge Commit ---->  Always creates a new commit (e.g., "Merge branch 'feature' into main").
+
+Conflicts ---->. If both branches changed the same line, Git stops and asks you to fix it.
+
+You don't usually have to do anything special. Git is smart enough to know when a Fast-Forward isn't possible and will default to this.

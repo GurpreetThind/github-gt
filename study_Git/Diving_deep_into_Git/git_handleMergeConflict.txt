@@ -1,0 +1,41 @@
+Merge conflicts happen when Git gets confused because two different changes were made to the same line of the same file, and it doesn't know which one to keep
+
+When you run git merge and a conflict occurs, Git will stop and tell you exactly which files are broken.
+
+Open the conflicted file and Git inserts special markers to show you the two versions:
+
+<<<<<<< HEAD: Start of your local changes.
+
+=======: The divider between the two versions.
+
+>>>>>>> branch-name: End of the incoming changes.
+
+Resolve the Conflict
+You have three choices:
+
+Keep your version: Delete the markers and the "incoming" code.
+
+After you've fixed the files in your editor:
+
+Stage the fix:
+
+git add <file-name>
+Commit the resolution:
+
+git commit -m "Fixed merge conflict in deploy script"
+
+Keep their version: Delete the markers and your "local" code.
+
+git merge --abort
+
+Combine both: Keep both blocks of code and delete only the markers.
+
+Once you've made your choice, you must delete the <<<<<<<, =======, and >>>>>>> lines
+
+The file must look like normal code again
+
+git log --merge 
+
+Shows merge logs 
+
+git diff can also show what needs to be done 

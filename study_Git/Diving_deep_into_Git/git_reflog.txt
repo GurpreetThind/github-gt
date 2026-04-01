@@ -1,0 +1,24 @@
+If git log is the history of the repository, then git reflog (Reference Log) is the history of your local movements. It is the ultimate "undo" button in Git.
+It records every single time the HEAD pointer moves—whether you switched branches, committed code, performed a rebase, or even if you accidentally deleted a branch. 
+While git log only shows the visible history of a branch, reflog shows the private diary of everything you did
+
+
+kind of lifesaver
+
+Imagine you accidentally deleted a branch before pushing it to GitHub, or you did a git reset --hard and lost three hours of work. To git log, those commits are gone. 
+To git reflog, they are still there
+
+
+View your history:
+
+Bash
+git reflog
+You will see a list of entries like HEAD@{0}, HEAD@{1}, etc., each with a short commit hash and a description of the action (e.g., checkout: moving from main to dev).
+
+Travel back in time:
+Once you find the point right before the disaster happened (let's say it's at HEAD@{5}), you can restore your project to that exact state:
+
+Bash
+git reset --hard HEAD@{5}
+
+

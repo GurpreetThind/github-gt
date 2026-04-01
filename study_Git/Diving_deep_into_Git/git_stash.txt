@@ -1,0 +1,31 @@
+Think of git stash as a "temporary storage drawer" for your code.
+
+It allows you to take all your uncommitted changes (the work you’re currently in the middle of), pull them off your working directory, and tuck them away safely so you can have a clean project state. This is a lifesaver when you are halfway through a feature but suddenly need to switch branches to fix a critical bug.
+
+
+Why use it?
+Imagine you are working on a new Python script for a DevOps pipeline. Your boss asks you to immediately fix an SSH issue on the main branch.
+
+You can't switch branches because your current work is "dirty" (uncommitted).
+
+You don't want to commit half-finished, broken code.
+
+Solution: You stash your work, fix the bug on main, then pop your work back out when you return.
+
+
+Command   ----->.  What it does
+git stash   ----->.  "Takes your current changes and hides them away. Your directory looks "clean."
+"git stash save "message"   ----->.  "Same as above   ----->.   but adds a label so you remember what was in there."
+git stash list   ----->.  "Shows you all the "drawers" (stashes) you currently have saved."
+git stash pop   ----->.  "Takes the most recent stash   ----->.   applies it to your code   ----->.   and deletes it from the stash list."
+git stash apply   ----->.  Applies the changes but keeps a copy in the stash list (safer if you're unsure).
+git stash drop   ----->.  Manually deletes a specific stash.
+git stash clear   ----->.  Deletes every single stash you have saved.
+
+
+By default, git stash only stores tracked files (files Git already knows about). If you created a brand new file and haven't run git add on it yet, Git won't stash it unless you use the "all" flag:
+
+
+git stash -u
+
+The -u stands for "untracked"

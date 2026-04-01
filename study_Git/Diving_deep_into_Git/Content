@@ -1,0 +1,11 @@
+git stash 
+
+git reflog
+
+git merge
+
+git rebase
+
+git cherry-pick
+
+git tag

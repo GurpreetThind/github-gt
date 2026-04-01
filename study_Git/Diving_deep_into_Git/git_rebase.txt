@@ -1,0 +1,30 @@
+Rebasing is the process of moving or combining a sequence of commits to a new base commit. In simpler terms, it’s like "rewriting history" so it looks like you began your work much later than you actually did.
+
+While a Merge joins two branches together by creating a new "Merge Commit," a Rebase takes all the work you did on your feature branch and "replays" it on top of the latest version of the main branch.
+
+How it Works (The Visual Flow)
+Imagine you start a feature branch from main at Commit A.
+
+While you work on Commit B and C, your teammate pushes Commit D to main.
+
+If you Merge, Git creates a new "Merge Commit" to join C and D.
+
+If you Rebase, Git tucks your B and C commits aside, moves your branch's starting point to D, and then reapplies B and C on top of it.
+
+
+Standard Rebase:
+To pull the latest changes from main into your feature branch without a merge commit:
+
+
+git checkout feature-branch
+git rebase main
+
+Interactive Rebase (-i):
+This is what we discussed earlier with squashing. It allows you to edit, delete, or combine commits before they go live:
+
+git rebase -i HEAD~3
+
+Never rebase a branch that has been pushed to a public repository (like GitHub) and is being used by others.
+
+Because rebasing rewrites history (it gives your commits new IDs), if a teammate has already pulled your old commits, their Git will get very confused when those commits suddenly "change" or disappear. 
+Only rebase your local work before you share it with the world.
