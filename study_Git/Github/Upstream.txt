@@ -1,0 +1,29 @@
+Upstream defines the relationship and direction of data flow between two repositories.
+
+A reference that links your local branch to a remote branch. 
+It tells Git: "Whenever I pull or push, this is the specific branch I want to talk to by default."
+
+
+bash-3.2$ grep upstream .git/config 
+[branch "upstream-learn"]
+bash-3.2$ git switch study
+A       study_Git/Github/Upstream.txt
+Switched to branch 'study'
+Your branch is up to date with 'origin/study'.
+bash-3.2$ grep upstream .git/config 
+[branch "upstream-learn"]
+
+bash-3.2$ git branch -a
+  feature-fix
+  study
+* upstream-learn
+  remotes/origin/HEAD -> origin/study
+  remotes/origin/cloning-repository
+  remotes/origin/feature
+  remotes/origin/feature-fix
+  remotes/origin/feature-local
+  remotes/origin/study
+
+Check HEAD and Upstream, they are different 
+
+
