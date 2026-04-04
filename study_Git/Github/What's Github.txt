@@ -1,0 +1,31 @@
+A cloud-based hosting service for Git repositories. 
+It provides a graphical interface and tools for collaboration that Git alone doesn't have
+In the cloud (owned by Microsoft), it is used Any time you want to store your code safely, share it with others, or trigger a deployment
+To provide a "Single Source of Truth" for your code so you don't lose work
+
+
+Git handles the "versioning," GitHub handles the "Collaboration."
+
+1. Repository (The "Project")
+This is where your project lives. It contains all your files and the entire Git history (the .git folder).
+
+Public: Anyone can see your code (great for your portfolio).
+
+Private: Only you (or your team) can see it.
+
+2. Forking (The "Copy")
+Think of this as "copy-pasting" someone else's entire project into your own account.
+
+Usage: You see a cool Kubernetes project; you Fork it to your account so you can experiment with it without breaking the original.
+
+3. Pull Request (The "Review Me")
+This is the heart of DevOps collaboration. It’s a formal request to merge your code changes into the main project.Process: You finish a feature ---> Open a Pull Request (PR) $\rightarrow$ Teammates review it/automated tests run ---> It gets Merged.
+
+4. Issues (The "To-Do List")
+A built-in tracking system for bugs, feature requests, or tasks.
+
+5. GitHub Actions (The "Automation")
+ 
+It allows you to automate workflows directly in GitHub.
+Every time you Push code, GitHub Actions can automatically test your code and deploy it to a cluster.
+

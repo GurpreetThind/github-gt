@@ -1,0 +1,95 @@
+1. Local Branch 
+A lightweight pointer to a specific commit in your repository's history
+Only you. No one else can see your local branches until you share them
+Stored inside the .git folder
+Created whenever you want to work on a new feature, fix a bug, or experiment without breaking the main code.
+To allow you to work in isolation. You can make 100 "messy" commits locally, and no one will know.
+
+
+############################################
+Create: git branch feature-xyz
+
+Switch to it: git checkout feature-xyz (or git switch feature-xyz)
+
+----------------------------------------------
+
+2. Remote Branch
+The "Shared Blueprint" in the Cloud.
+A version of your branch that lives on a server (like GitHub)
+You and your entire team (or anyone with access to the repo)
+Hosted on a remote server (usually called origin).
+Created when you "push" a local branch for the first time or when a teammate shares their work.
+To collaborate. It acts as the "Source of Truth" that connects you to your teammates' computers and your CI/CD pipelines.
+
+
+##############################################
+
+git push origin feature-xyz
+
+----------------------------------------------
+
+3. Remote-Tracking Branch
+The "Internal Bookmark."
+
+There is actually a secret third type that sits in the middle. These look like origin/main
+
+A read-only reference that remembers exactly where the Remote Branch was the last time you ran a fetch or pull
+It is on your PC, but you don't "work" on it directly
+
+It tells Git if your local branch is "ahead" or "behind" the server
+
+-----------------------------------------------------
+
+Local and Remote Branches communicate via Push Pull/Fetch 
+
+They are linked by something called a Tracking Relationship (or "upstream"). 
+When you first push a branch with -u, you're essentially "pairing" them so they know who to talk to.
+
+
+############################################
+
+git push -u origin feature-branch
+
+############################################
+
+Sending Updates: Push
+Uploads your local commits to the server.
+
+From your local system to the Remote Repository. When you've finished a task and want to save it to the cloud or share it with the team
+
+Update the Remote Branch so it matches your Local Branch
+
+
+Checking for Updates: Fetch (The "When")
+
+When you want to see if someone else has changed the Remote Branch
+
+Fetching is like "checking your notifications." It updates your local Remote-Tracking Branch (e.g., origin/main) but doesn't change your actual code yet. 
+
+It just lets your local syeste know, "Hey, there are 3 new commits on the server."
+
+Receiving Updates: Pull (The "H" - How it all merges)
+
+A Pull is actually a Fetch + Merge happening at the same time
+
+It grabs the updates from the Remote Branch and immediately injects them into your Local Branch.
+
+
+The "Hidden Messenger": Remote-Tracking Branches
+This is the most important part of the communication. Your local system keeps a "bookmark" of what it thinks the server looks like.
+
+Local Branch: main (Where you type code)
+
+Remote-Tracking Branch: origin/main (The bookmark on your local system)
+
+Remote Branch: main (The actual code on GitHub)
+
+You commit on your Local Branch. Now you are "1 commit ahead" of the bookmark.
+
+You Push. This updates the Remote Branch AND moves your bookmark forward.
+
+A teammate pushes a change. Your bookmark is now "1 commit behind" the Remote Branch.
+
+You Fetch. Your bookmark moves forward to match the Remote, and Git tells you: "Your branch is behind origin/main by 1 commit."
+
+You Pull. Your Local Branch finally moves forward to match the bookmark.
