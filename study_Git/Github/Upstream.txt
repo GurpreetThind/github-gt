@@ -26,4 +26,4 @@ bash-3.2$ git branch -a
 
 Check HEAD and Upstream, they are different 
 
-
+By setting the upstream once, you "pair" them forever.

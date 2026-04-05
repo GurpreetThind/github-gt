@@ -1,0 +1,38 @@
+
+bash-3.2$ git branch 
+* study
+
+
+bash-3.2$ git branch -a
+* study
+  remotes/origin/HEAD -> origin/study
+  remotes/origin/cloning-repository
+  remotes/origin/feature
+  remotes/origin/feature-fix
+  remotes/origin/feature-local
+  remotes/origin/study
+  remotes/origin/upstream-learn
+bash-3.2$ git branch --delete --remotes origin/feature
+Deleted remote-tracking branch origin/feature (was c114479).
+
+Delete a remote branch locally
+
+bash-3.2$ git branch -a
+* study
+  remotes/origin/HEAD -> origin/study
+  remotes/origin/cloning-repository
+  remotes/origin/feature-fix
+  remotes/origin/feature-local
+  remotes/origin/study
+  remotes/origin/upstream-learn
+bash-3.2$ 
+
+
+Deletes branch on the github 
+
+
+bash-3.2$ git push origin --delete feature-fix
+To https://github.com/GurpreetThind/github-gt.git
+ - [deleted]         feature-fix
+
+

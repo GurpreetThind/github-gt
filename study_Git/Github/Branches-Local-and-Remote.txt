@@ -93,3 +93,23 @@ A teammate pushes a change. Your bookmark is now "1 commit behind" the Remote Br
 You Fetch. Your bookmark moves forward to match the Remote, and Git tells you: "Your branch is behind origin/main by 1 commit."
 
 You Pull. Your Local Branch finally moves forward to match the bookmark.
+
+############################
+
+
+Creating a local tracking branch 
+
+git branch --track feature-local origin/feature
+
+bash-3.2$ git branch 
+* feature
+  study
+bash-3.2$ git branch --track feature-local origin/feature
+branch 'feature-local' set up to track 'origin/feature'.
+bash-3.2$ git branch
+* feature
+  feature-local
+  study
+
+
+  
