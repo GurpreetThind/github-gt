@@ -1,0 +1,11 @@
+git branch <branch_name>
+git checkout <branch_name>
+
+OR
+
+git checkout -b <branch_name>
+
+OR
+
+git switch -c <branch_name>
+
